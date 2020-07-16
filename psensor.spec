@@ -39,12 +39,9 @@ It can monitor:
 %prep
 %setup -q
 
-# fix build with json-c >= 0.13
-sed -i 's|!is_error(obj)|obj != NULL|' src/rsensor.c
-
 %build
 export CFLAGS="%{optflags} -fno-strict-aliasing"
-%configure2_5x
+%configure
 %make_build
 
 %install
