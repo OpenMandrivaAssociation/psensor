@@ -1,5 +1,5 @@
 Name:		psensor
-Version:	1.2.0
+Version:	1.2.1
 Release:	1
 Summary:	Graphical Temperature Monitor for CPU and GPU
 License:	GPLv2+
