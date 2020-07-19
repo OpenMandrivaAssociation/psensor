@@ -1,3 +1,6 @@
+%define _disable_ld_no_undefined 1
+%define _disable_lto 1
+
 Name:		psensor
 Version:	1.2.1
 Release:	1
