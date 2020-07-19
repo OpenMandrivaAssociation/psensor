@@ -40,6 +40,8 @@ It can monitor:
 %setup -q
 
 %build
+export CC=gcc
+export CXX=g++
 export CFLAGS="%{optflags} -fno-strict-aliasing"
 %configure
 %make_build
