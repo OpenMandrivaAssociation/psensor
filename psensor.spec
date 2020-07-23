@@ -43,9 +43,10 @@ It can monitor:
 %setup -q
 
 %build
-export CC=gcc
-export CXX=g++
-export CFLAGS="%{optflags} -fno-strict-aliasing"
+#export CC=gcc
+#export CXX=g++
+#export CFLAGS="%{optflags} -fno-strict-aliasing"
+%{build_cflags} -fno-strict-aliasing"
 %configure
 %make_build
 
