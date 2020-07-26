@@ -9,6 +9,7 @@ License:	GPLv2+
 Group:		Monitoring
 URL:		http://wpitchoune.net/psensor
 Source0:	http://wpitchoune.net/psensor/files/%{name}-%{version}.tar.gz
+Patch0:   0001-fix-compilation-with-microhttpd-since-version-0.9.71.patch
 
 BuildRequires:	cppcheck
 BuildRequires:	help2man
@@ -43,10 +44,6 @@ It can monitor:
 %setup -q
 
 %build
-#export CC=gcc
-#export CXX=g++
-#export CFLAGS="%{optflags} -fno-strict-aliasing"
-#%{build_cflags} -fno-strict-aliasing
 %global build_cflags %{build_cflags} -fno-strict-aliasing
 %configure
 %make_build
