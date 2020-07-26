@@ -42,6 +42,7 @@ It can monitor:
 
 %prep
 %setup -q
+%autopatch -p1
 
 %build
 %global build_cflags %{build_cflags} -fno-strict-aliasing
