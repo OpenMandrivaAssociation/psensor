@@ -1,0 +1,97 @@
+From 3e8dfe6f2a4317c4cab3d5afec42abdefa3cc2df Mon Sep 17 00:00:00 2001
+From: Jean-Philippe Orsini <orsinije@fr.ibm.com>
+Date: Fri, 17 Jul 2020 00:10:54 +0200
+Subject: [PATCH 1/3] fix compilation with microhttpd since version 0.9.71
+ which changes the return type of the cbk
+
+---
+ src/server/server.c | 22 ++++++++++++++--------
+ 1 file changed, 14 insertions(+), 8 deletions(-)
+
+diff --git a/src/server/server.c b/src/server/server.c
+index a70f6ab..184fe0c 100644
+--- a/src/server/server.c
++++ b/src/server/server.c
+@@ -306,14 +306,20 @@ create_response(const char *nurl, const char *method, unsigned int *rp_code)
+ 					       MHD_RESPMEM_MUST_FREE);
+ }
+ 
+-static int cbk_http_request(void *cls,
+-			    struct MHD_Connection *connection,
+-			    const char *url,
+-			    const char *method,
+-			    const char *version,
+-			    const char *upload_data,
+-			    size_t *upload_data_size,
+-			    void **ptr)
++
++#if MHD_VERSION < 0x00097002
++static int
++#else
++static MHD_result
++#endif
++cbk_http_request(void *cls,
++		 struct MHD_Connection *connection,
++		 const char *url,
++		 const char *method,
++		 const char *version,
++		 const char *upload_data,
++		 size_t *upload_data_size,
++		 void **ptr)
+ {
+ 	static int dummy;
+ 	struct MHD_Response *response;
+-- 
+GitLab
+
+
+From 8a0924a3bcb84619a6b30f6dae5037bd342bddef Mon Sep 17 00:00:00 2001
+From: Jean-Philippe Orsini <orsinije@fr.ibm.com>
+Date: Fri, 17 Jul 2020 00:30:51 +0200
+Subject: [PATCH 2/3] fixed typo
+
+---
+ src/server/server.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/server/server.c b/src/server/server.c
+index 184fe0c..1ac80c2 100644
+--- a/src/server/server.c
++++ b/src/server/server.c
+@@ -310,7 +310,7 @@ create_response(const char *nurl, const char *method, unsigned int *rp_code)
+ #if MHD_VERSION < 0x00097002
+ static int
+ #else
+-static MHD_result
++static MHD_Result
+ #endif
+ cbk_http_request(void *cls,
+ 		 struct MHD_Connection *connection,
+-- 
+GitLab
+
+
+From 53b79ec253f51534bf238924f218d8cef08a3074 Mon Sep 17 00:00:00 2001
+From: Jean-Philippe Orsini <orsinije@fr.ibm.com>
+Date: Fri, 17 Jul 2020 00:37:24 +0200
+Subject: [PATCH 3/3] it is an enum...
+
+---
+ src/server/server.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/server/server.c b/src/server/server.c
+index 1ac80c2..5d7f751 100644
+--- a/src/server/server.c
++++ b/src/server/server.c
+@@ -310,7 +310,7 @@ create_response(const char *nurl, const char *method, unsigned int *rp_code)
+ #if MHD_VERSION < 0x00097002
+ static int
+ #else
+-static MHD_Result
++static enum MHD_Result
+ #endif
+ cbk_http_request(void *cls,
+ 		 struct MHD_Connection *connection,
+-- 
+GitLab
