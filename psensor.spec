@@ -9,12 +9,13 @@ License:	GPLv2+
 Group:		Monitoring
 URL:		http://wpitchoune.net/psensor
 Source0:	http://wpitchoune.net/psensor/files/%{name}-%{version}.tar.gz
-Patch0:   0001-fix-compilation-with-microhttpd-since-version-0.9.71.patch
+Patch0:		0001-fix-compilation-with-microhttpd-since-version-0.9.71.patch
+Patch1:		psensor-1.2.1-use-ayatana-appindicator.patch
 
 BuildRequires:	cppcheck
 BuildRequires:	help2man
 BuildRequires:	lm_sensors-devel
-BuildRequires:	pkgconfig(appindicator3-0.1)
+BuildRequires:	pkgconfig(ayatana-appindicator3-0.1)
 BuildRequires:	pkgconfig(cairo)
 BuildRequires:	pkgconfig(gconf-2.0)
 BuildRequires:	pkgconfig(gtk+-3.0)
