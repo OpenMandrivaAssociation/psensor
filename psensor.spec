@@ -11,6 +11,7 @@ URL:		http://wpitchoune.net/psensor
 Source0:	http://wpitchoune.net/psensor/files/%{name}-%{version}.tar.gz
 Patch0:		0001-fix-compilation-with-microhttpd-since-version-0.9.71.patch
 Patch1:		psensor-1.2.1-use-ayatana-appindicator.patch
+Patch2:		psensor-1.2.1-cflags.patch
 
 BuildRequires:	cppcheck
 BuildRequires:	help2man

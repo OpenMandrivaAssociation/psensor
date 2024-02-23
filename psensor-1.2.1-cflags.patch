@@ -1,0 +1,13 @@
+--- a/src/Makefile.am
++++ b/src/Makefile.am
+@@ -18,8 +18,8 @@ psensor_SOURCES = \
+ 	ui_status.h ui_status.c \
+ 	ui_unity.h
+ 
+-# -export-dynamic is need for defining handlers in the glade file.
+-AM_LDFLAGS = -Wl,--as-needed -export-dynamic
++# --export-dynamic is need for defining handlers in the glade file.
++AM_LDFLAGS = -Wl,--as-needed
+ 
+ if LIBMICROHTTPD
+ if JSON
