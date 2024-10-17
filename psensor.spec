@@ -7,7 +7,7 @@ Release:	1
 Summary:	Graphical Temperature Monitor for CPU and GPU
 License:	GPLv2+
 Group:		Monitoring
-URL:		http://wpitchoune.net/psensor
+URL:		https://wpitchoune.net/psensor
 Source0:	http://wpitchoune.net/psensor/files/%{name}-%{version}.tar.gz
 Patch0:		0001-fix-compilation-with-microhttpd-since-version-0.9.71.patch
 Patch1:		psensor-1.2.1-use-ayatana-appindicator.patch
